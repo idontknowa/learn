@@ -1,0 +1,46 @@
+<!--index.wxml-->
+
+
+<map id="myMap" class="map"
+   longitude="{{longitude}}"
+   latitude="{{latitude}}" scale='17'
+   polyline="{{polyline}}"
+   markers="{{markers}}"
+   show-location="true"
+   bindmarkertap="markerClick">
+
+<view style="width:100%">
+  <view class="searchViewContainer">
+    <view class="searchView" style="display:flex ;">
+
+      <view class="admin"  hover-class="plus-hover">
+         <image src="../resource/images/admin.png" bindtap="admin" ></image>
+      </view>
+
+      <view class="searchBar"  hover-class="plus-hover">
+        <input  bindinput="getsuggest" value="{{backfill.title}}"></input>
+      </view>
+
+      <view class="navigation" hover-class="plus-hover">
+        <image src="../resource/images/navigate.png" bindtap="navigation"></image>
+      </view>
+      <view class="{{showStartNavigation?'navigation':'view_hide'}}" hover-class="plus-hover">
+      <image src="../resource/images/BTNavigation.png" bindtap="startNavigation"></image>
+      </view>
+    </view>
+  </view>
+  <!-- <button  bindtap="navigation">ceshi</button> -->
+  
+  <!--搜索结果 '-->
+<view  class="backFillContainer" wx:if='{{showOrHidden}}' wx:for="{{suggestion}}" wx:key="index">
+    <!--绑定回填事件-->
+    <view >
+
+        <!--渲染地址title-->
+        <view  style="color:#666;text-align:left;" bindtap="backfill" id="{{index}}">{{item.title}}</view>
+     
+    </view>
+</view>
+</view>
+
+</map>
